@@ -14,7 +14,8 @@ class ListUsers extends ListRecords
     {
         return [
             CreateAction::make()
-                ->modalWidth('lg'),
+                ->modalWidth('lg')
+                ->slideOver(),
         ];
     }
 }

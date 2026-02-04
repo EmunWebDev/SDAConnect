@@ -78,15 +78,15 @@ class MembersTable
                     ->label('Created by')
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime('F j, Y g:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->dateTime('F j, Y g:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('deleted_at')
-                    ->dateTime()
+                    ->dateTime('F j, Y g:i A')
                     ->label('Archived since')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

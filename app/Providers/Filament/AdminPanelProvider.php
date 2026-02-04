@@ -39,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             // ->registration()
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
-            ->profile(isSimple: false)
+            ->profile()
             ->passwordReset()
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->colors([
