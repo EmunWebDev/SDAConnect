@@ -21,6 +21,7 @@ class LatestEvents extends TableWidget
 
         return $table
             ->query(EventResource::getEloquentQuery())
+            ->description('List of latest events created')
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('eventType.name'),

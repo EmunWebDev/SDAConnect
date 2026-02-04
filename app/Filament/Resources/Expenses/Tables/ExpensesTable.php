@@ -21,8 +21,7 @@ class ExpensesTable
         return $table
             ->columns([
                 TextColumn::make('expenseType.name')
-                    ->searchable()
-                    ->badge(),
+                    ->searchable(),
                 TextColumn::make('amount')
                     ->summarize([
                         Sum::make()
@@ -34,8 +33,8 @@ class ExpensesTable
                 TextColumn::make('user.name')
                     ->label('Recorded by'),
                 TextColumn::make('created_at')
-                    ->since()
-                    ->label('Created since'),
+                    ->dateTime('F j, Y g:i A')
+                    ->label('Date recorded'),
                 TextColumn::make('updated_at')
                     ->since()
                     ->label('Updated since')

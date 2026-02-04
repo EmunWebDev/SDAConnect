@@ -18,6 +18,7 @@ class DepartmentForm
                     ->schema([
                         TextInput::make('name')
                             ->required()
+                            ->unique()
                             ->placeholder('Enter department name'),
                         Textarea::make('description')
                             ->required()
