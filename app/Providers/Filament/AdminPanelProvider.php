@@ -5,14 +5,16 @@ namespace App\Providers\Filament;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
+use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Navigation\NavigationGroup;
+
 use Filament\Widgets\FilamentInfoWidget;
-use Openplain\FilamentShadcnTheme\Color;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
+use Octopy\Filament\Palette\PaletteSwitcherPlugin;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -39,8 +41,9 @@ class AdminPanelProvider extends PanelProvider
             ->resourceEditPageRedirect('index')
             ->profile(isSimple: false)
             ->passwordReset()
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->colors([
-                'primary' => Color::Default,
+                'primary' => Color::Violet,
             ])
             ->sidebarCollapsibleOnDesktop()
             ->multiFactorAuthentication([
@@ -54,7 +57,7 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Systems Management'),
             ])
-            ->plugin(
+            ->plugins([
                 AuthDesignerPlugin::make()
                     ->login(
                         fn($config) => $config
@@ -67,8 +70,9 @@ class AdminPanelProvider extends PanelProvider
                             ->media(asset('SDAConnect.png'))
                             ->mediaPosition(MediaPosition::Left)
                             ->mediaSize('65%')
-                    )
-            )
+                    ),
+                PaletteSwitcherPlugin::make()
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

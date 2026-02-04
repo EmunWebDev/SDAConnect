@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\Members\Tables;
 
-use Filament\Actions\ActionGroup;
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
@@ -89,6 +90,9 @@ class MembersTable
                 TrashedFilter::make()
             ])
             ->recordActions([
+                ViewAction::make()
+                    ->label('')
+                    ->tooltip('View'),
                 EditAction::make()
                     ->label('')
                     ->tooltip('Edit'),

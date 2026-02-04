@@ -12,7 +12,9 @@ use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
+use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Caresome\FilamentAuthDesigner\Enums\MediaPosition;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -28,15 +30,35 @@ class ClerkPanelProvider extends PanelProvider
             ->path('clerk')
             ->login()
             ->topNavigation()
+            ->passwordReset()
             ->brandName('Clerk Panel')
             ->colors([
                 'primary' => Color::Blue,
             ])
+            ->brandLogo('/images/SDAConnect_logo.png')
+            ->brandLogoHeight('45px')
+            ->profile()
+            ->maxContentWidth(true)
             ->topbar()
+            ->plugin(
+                AuthDesignerPlugin::make()
+                    ->login(
+                        fn($config) => $config
+                            ->media(asset('SDAConnect.png'))
+                            ->mediaPosition(MediaPosition::Left)
+                            ->mediaSize('65%')
+                    )
+                    ->passwordReset(
+                        fn($config) => $config
+                            ->media(asset('SDAConnect.png'))
+                            ->mediaPosition(MediaPosition::Left)
+                            ->mediaSize('65%')
+                    ),
+            )
             ->discoverResources(in: app_path('Filament/Clerk/Resources'), for: 'App\Filament\Clerk\Resources')
             ->discoverPages(in: app_path('Filament/Clerk/Pages'), for: 'App\Filament\Clerk\Pages')
             ->pages([
-                Dashboard::class,
+                // Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Clerk/Widgets'), for: 'App\Filament\Clerk\Widgets')
             ->widgets([

@@ -2,16 +2,17 @@
 
 namespace App\Filament\Clerk\Resources\Members\Tables;
 
+use Filament\Tables\Table;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Support\Enums\FontWeight;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\TrashedFilter;
-use Filament\Tables\Table;
+use Filament\Actions\ForceDeleteBulkAction;
 
 class MembersTable
 {
@@ -20,22 +21,31 @@ class MembersTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->circular(),
+                    ->circular()
+                    ->default(
+                        fn($record) =>
+                        "https://api.dicebear.com/9.x/avataaars/svg?seed=" . md5($record->id) . "&backgroundColor=c0aede"
+                    ),
                 TextColumn::make('full_name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->weight(FontWeight::SemiBold),
                 TextColumn::make('date_of_birth')
                     ->date()
-                    ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
-                TextColumn::make('gender')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('gender'),
                 TextColumn::make('marital_status')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('email_address')
-                    ->searchable(),
+                    ->placeholder('No email address')
+                    ->searchable()
+                    ->icon('heroicon-o-envelope'),
                 TextColumn::make('phone_no')
-                    ->searchable(),
+                    ->placeholder('No phone no.')
+                    ->searchable()
+                    ->icon('heroicon-o-device-phone-mobile')
+                    ->label('Phone no.'),
                 TextColumn::make('facebook_account')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -77,6 +87,7 @@ class MembersTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('deleted_at')
                     ->dateTime()
+                    ->label('Archived since')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

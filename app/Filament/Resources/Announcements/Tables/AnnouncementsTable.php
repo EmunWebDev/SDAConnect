@@ -10,6 +10,7 @@ use Filament\Actions\ViewAction;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class AnnouncementsTable
@@ -39,7 +40,7 @@ class AnnouncementsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make()
             ])
             ->recordActions([
                 ViewAction::make()
