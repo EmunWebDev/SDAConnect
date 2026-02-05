@@ -36,6 +36,8 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->brandLogo('/images/SDAConnect_logo.png')
             ->brandLogoHeight('45px')
+            ->favicon('/images/favicon.png')
+            ->unsavedChangesAlerts()
             // ->registration()
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
