@@ -39,8 +39,6 @@ class EventsRelationManager extends RelationManager
                 TextColumn::make('name')
                     ->weight(FontWeight::SemiBold)
                     ->searchable(),
-                TextColumn::make('eventType.name')
-                    ->searchable(),
                 TextColumn::make('start_date')
                     ->date()
                     ->sortable(),

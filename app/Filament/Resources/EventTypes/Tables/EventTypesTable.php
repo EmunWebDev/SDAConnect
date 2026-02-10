@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\EventTypes\Tables;
 
+use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
+use Guava\FilamentModalRelationManagers\Actions\RelationManagerAction;
+use App\Filament\Resources\EventTypes\RelationManagers\EventsRelationManager;
 
 class EventTypesTable
 {
@@ -30,6 +32,13 @@ class EventTypesTable
                 //
             ])
             ->recordActions([
+                RelationManagerAction::make('lesson-relation-manager')
+                    ->label('')
+                    ->modalWidth('4xl')
+                    ->slideOver()
+                    ->tooltip('View events')
+                    ->icon('heroicon-o-calendar-date-range')
+                    ->relationManager(EventsRelationManager::make()),
                 EditAction::make()
                     ->modalWidth('xl')
                     ->label('')

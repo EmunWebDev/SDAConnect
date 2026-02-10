@@ -3,3 +3,4 @@
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../vendor/octopyid/filament-palette/resources';
+@source '../../../../vendor/guava/filament-modal-relation-managers/resources/**/*';
