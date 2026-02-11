@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             ExpenseTypeSeeder::class,
             EventTypeSeeder::class,
             PositionSeeder::class,
-            MemberSeeder::class,
+            // MemberSeeder::class,
         ]);
     }
 }
