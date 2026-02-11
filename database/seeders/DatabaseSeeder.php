@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Richard Sombrio',
-            'email' => 'richard.sombrio27@gmail.com',
+            'name' => 'Emmanuel Felipe',
+            'email' => 'e.felipe.537937@umindanao.edu.ph',
             'password' => Hash::make('password'),
             'role' => 'Super Admin'
         ]);
